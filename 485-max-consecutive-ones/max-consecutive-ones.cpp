@@ -5,8 +5,9 @@ public:
         for(int i=0;i<nums.size();i++){
             if(nums[i]==1){
                 count++;
-                if(count>maxi)
-                maxi=count;
+                // if(count>maxi)
+                // maxi=count;
+                maxi=max(maxi,count);
             }
             if(nums[i]==0){
                 count=0;
