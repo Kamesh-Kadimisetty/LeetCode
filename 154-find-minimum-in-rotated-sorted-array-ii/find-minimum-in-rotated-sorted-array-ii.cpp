@@ -9,7 +9,6 @@ public:
             ans = min(ans, nums[mid]);
             ans = min(ans, nums[low]);
             ans = min(ans, nums[high]);
-            
             // Determine which part of the array to explore
             if (nums[low] < nums[mid]) {
                 // The minimum is in the right half
