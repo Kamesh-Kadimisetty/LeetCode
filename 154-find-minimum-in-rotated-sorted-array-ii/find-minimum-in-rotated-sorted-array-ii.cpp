@@ -17,7 +17,7 @@ public:
                 // The minimum is in the left half
                 high = mid - 1;
             } else {
-                // nums[low] == nums[mid] == nums[high], we need to reduce the search space
+                //nums[low]==nums[mid]==nums[high],we need to reduce the search space
                 low++;
                 high--;
             }
