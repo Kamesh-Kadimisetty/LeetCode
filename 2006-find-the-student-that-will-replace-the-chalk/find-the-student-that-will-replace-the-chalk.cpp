@@ -2,14 +2,11 @@ class Solution {
 public:
     int chalkReplacer(vector<int>& chalk, int k) {
         int n=chalk.size();
-        long long chalksum=accumulate(chalk.begin(),chalk.end(),0LL);
-        k=k%chalksum;
-        for(int i=0;i<n;i++){
-            if(chalk[i]>k){
-                return i;
-            }
-            k-=chalk[i];
+        vector<long long >presum(n,chalk[0]);// prefix sum 0-indexed 
+        for(int i=1;i<n;i++){
+            presum[i]=chalk[i]+presum[i-1];
         }
-        return -1;
+        k%=presum[n-1];
+        return upper_bound(presum.begin(),presum.end(),k)-presum.begin();
     }
 };
