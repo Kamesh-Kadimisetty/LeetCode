@@ -2,7 +2,7 @@ class Solution {
 public:
     int getLucky(string s, int k) {
         int n=s.size();
-        long long sum=0,ans=0;
+        long long sum=0;
         for(int i = 0; i < s.size(); i++){
             int num = s[i] - 'a' + 1; // 'a' -> 1, 'b' -> 2, ..., 'z' -> 26
             while (num > 0) {
