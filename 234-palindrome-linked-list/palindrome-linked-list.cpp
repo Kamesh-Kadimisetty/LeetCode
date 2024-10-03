@@ -33,12 +33,13 @@ public:
         fast=head;
         while(newhead!=NULL){
             if(fast->val!=newhead->val){
+                reverse(newhead);
                 return false;
             }
             newhead=newhead->next;
             fast=fast->next;
         }
-
+        reverse(newhead);
         return true;
     }
 };
