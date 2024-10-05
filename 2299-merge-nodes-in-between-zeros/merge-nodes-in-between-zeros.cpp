@@ -26,7 +26,6 @@ public:
             }
             temp2=temp2->next;
         }
-        temp1->next=NULL;
         return dummy->next;
     }
 };
