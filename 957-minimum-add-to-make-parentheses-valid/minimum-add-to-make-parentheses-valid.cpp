@@ -1,21 +1,20 @@
 class Solution {
 public:
     int minAddToMakeValid(string s) {
-        int openBrackets = 0;
-
-        int minAddsRequired = 0;
-        for (char c : s) {
-            if (c == '(') {
-                openBrackets++;
-            } else {
-                // If open bracket exists, match it with the closing one
-                // If not, we need to add a open bracket.
-                openBrackets > 0 ? openBrackets-- : minAddsRequired++;
+        int count=0,ans=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='('){
+                count++;
+            }
+            else{
+                if(count<=0){
+                    ans++;
+                }
+                else{
+                    count--;
+                }
             }
         }
-
-        // Add the remaining open brackets as closing brackets would be
-        // required.
-        return minAddsRequired + openBrackets;
+        return count+ans;
     }
 };
