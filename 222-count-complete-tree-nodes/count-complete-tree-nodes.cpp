@@ -1,16 +1,16 @@
 class Solution {
 public:
-    void preorder(TreeNode* root,vector<int>&arr){
+    void preorder(TreeNode* root,int &count){
         if(root!=NULL){
-            arr.push_back(root->val);
-            preorder(root->left,arr);
-            preorder(root->right,arr);
+            count++;
+            preorder(root->left,count);
+            preorder(root->right,count);
         }
     }
     int countNodes(TreeNode* root) {
         if(root==NULL)return 0;
-        vector<int> arr;
-        preorder(root,arr);
-        return arr.size();
+        int count=0;
+        preorder(root,count);
+        return count;
     }
 };
