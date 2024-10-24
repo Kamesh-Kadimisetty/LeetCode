@@ -14,14 +14,12 @@ public:
                 TreeNode* it=st.front();
                 st.pop();
                 int index=lefttoright?i:n-i-1;
-                ans[i]=it->val;
-                if(it->right) st.push(it->right);
+                ans[index]=it->val;
                 if(it->left)  st.push(it->left);
+                if(it->right) st.push(it->right);
             }
+            lefttoright=!lefttoright;
             res.push_back(ans);
-        }
-        for(int i=2;i<res.size();i+=2){
-            reverse(res[i].begin(),res[i].end());
         }
         return res;
     }
