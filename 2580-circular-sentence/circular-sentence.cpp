@@ -14,18 +14,13 @@ public:
                 count++;
             }
         }
-        for(auto i:res){
-            cout<<i<<" ";
-        }
         int n=res.size();
-        if(res.size()==1){
+        if(n==1){
             if(res[0][0]!=res[0][res[0].size()-1]){
                 return false;
             }
         }
-        for(int i=0;i<res.size()-1;i++){
-            // cout<<res[i][res[i].size()-1]<<" ";
-            // cout<<res[i+1][res[i+1].size()-1]<<" ";
+        for(int i=0;i<n-1;i++){
             if(res[i][res[i].size()-1]!=res[i+1][0]){
                 return false;
             }
