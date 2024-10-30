@@ -7,12 +7,8 @@ public:
                 s.erase(s.begin()+i);
             }
         }
-        int n=s.size();
-        for(int i=0;i<n/2;i++){
-            if(s[i]!=s[n-i-1]){
-                return false;
-            }
-        }
-        return true;
+        string rev=s;
+        reverse(rev.begin(),rev.end());
+        return rev==s;
     }
 };
