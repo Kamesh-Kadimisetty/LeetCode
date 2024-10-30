@@ -13,7 +13,7 @@ public:
         }
         return dp;
     }
-     vector<int> LIS(vector<int>nums)
+     vector<int> lisoptimal(vector<int>nums)
     {
         int n=nums.size();
         vector<int>dp(n,1);
@@ -49,13 +49,12 @@ public:
                 start=mid+1;
         }
         arr[start]=val;
-        
     }
     int minimumMountainRemovals(vector<int>& nums) {
         int n=nums.size();
-        vector<int>increasing=LIS(nums);  //LIS
+        vector<int>increasing=lisoptimal(nums);  //LIS
         reverse(nums.begin(),nums.end());
-        vector<int>decreasing=LIS(nums);  //LDS
+        vector<int>decreasing=lisoptimal(nums);  //LDS
         reverse(decreasing.begin(),decreasing.end());
         int ans=INT_MAX;
         for(int i=0;i<n;i++){
