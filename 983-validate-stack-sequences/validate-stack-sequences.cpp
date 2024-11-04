@@ -10,7 +10,6 @@ public:
                 j++;
             }
         }
-        cout<<j;
         return j==popped.size();
     }
 };
