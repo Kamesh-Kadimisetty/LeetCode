@@ -11,7 +11,7 @@ public:
     }
     int smallestNumber(int n, int t) {
         if(n==t) return n;
-        for(int i=n;i<INT_MAX;i++){
+        for(int i=n;i<n+10;i++){
             if(isdivisible(i,t)){
                 return i;
             }
