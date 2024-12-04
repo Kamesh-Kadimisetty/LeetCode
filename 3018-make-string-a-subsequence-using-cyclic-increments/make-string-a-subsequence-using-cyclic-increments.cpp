@@ -14,9 +14,7 @@ public:
                 i++;
             }
         }
-        if(j==m){
-            return true;
-        }
-        return false;
+        
+        return j==m?true:false;
     }
 };
