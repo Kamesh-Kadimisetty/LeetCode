@@ -8,13 +8,11 @@ public:
             n/=10;
             count++;
         }
-        if(count==1)return maxdigit;
-        string s="";
-        while(count!=0){
-            s.append(to_string(maxdigit));
+        while(count>0){
+            ans=ans*10+maxdigit;
             count--;
         }
-        return stoi(s);
+        return ans;
     }
     int sumOfEncryptedInt(vector<int>& nums) {
         int sum=0;
