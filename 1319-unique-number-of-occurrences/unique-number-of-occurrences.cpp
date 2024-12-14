@@ -9,6 +9,6 @@ public:
         for(auto it:mpp){
             st.insert(it.second);
         }
-        return st.size()==mpp.size()?true:false;
+        return st.size()==mpp.size();
     }
 };
