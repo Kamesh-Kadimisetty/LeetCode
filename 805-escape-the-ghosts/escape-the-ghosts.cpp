@@ -5,9 +5,10 @@ public:
         int targetsteps=abs(x)+abs(y);
         vector<int>ghoststeps;
         for(auto it:ghosts){
-            ghoststeps.push_back(abs(x-it[0])+abs(y-it[1]));
+            if(targetsteps>=(abs(x-it[0])+abs(y-it[1]))){
+                return false;
+            }
         }
-        int minval=*min_element(ghoststeps.begin(),ghoststeps.end());
-        return targetsteps<minval;
+        return true;
     }
 };
