@@ -1,29 +1,17 @@
 class Solution {
 public:
-    int wateringPlants(vector<int>& plants, int capacity) {
-        int water=capacity,n=plants.size();
-        int distance=0,i=0,pos=-1;
-        while(i<n){
-            if(water>=plants[i]){
-                distance+=abs(pos-i);
-                pos=i;
-                water-=plants[i];
-                if(i<n-1 && water>=plants[i+1]){
-                    i++;
-                    distance++;
-                    pos=i;
-                }
-                if(i==n-1){
-                    return distance;
-                }
-            }
+    int wateringPlants(vector<int>& p, int capacity) {
+        int ans=0,c=capacity;
+        for(int i=0;i<p.size();i++){
+            if(c>=p[i])
+                ans++;
             else{
-                distance+=abs(pos+1);
-                pos=-1;
-                water=capacity;
-                i++;
+                ans+=i; 
+                ans+=i+1;
+                c=capacity;
             }
+             c=c-p[i];
         }
-        return distance;
+        return ans;
     }
 };
