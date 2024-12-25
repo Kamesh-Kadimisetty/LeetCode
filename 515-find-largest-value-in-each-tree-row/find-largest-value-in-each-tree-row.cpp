@@ -9,16 +9,14 @@ public:
         qu.push(root);
         while(!qu.empty()){
             int n=qu.size();
-            vector<int>level;
+            int largest=INT_MIN;
             for(int i=0;i<n;i++){
                 TreeNode* node=qu.front();
                 qu.pop();
                 if(node->left)qu.push(node->left);
                 if(node->right)qu.push(node->right);
-                level.push_back(node->val);
+                largest=max(largest,node->val);
             }
-            sort(level.begin(),level.end());
-            int largest=*max_element(level.begin(),level.end());
             result.push_back(largest);
         }
         return result;
