@@ -5,8 +5,6 @@ public:
         vector<int>nse=NSE(heights);
         vector<int>pse=PSE(heights);
         for(int i=0;i<heights.size();i++){
-            // cout<<heights[i]*(nse[i]-pse[i]-1)<<endl;
-            // cout<<pse[i]<<" "nse[i]<<endl;
             maxheight=max(maxheight,heights[i]*(nse[i]-pse[i]-1));
         }
         return maxheight;
