@@ -10,14 +10,11 @@ public:
     }
     string convertDateToBinary(string date) {
         string ans="";
-        string year=date.substr(0,4);
-        string month=date.substr(5,2);
-        string dat=date.substr(8,2);
-        ans.append(tobinary(stoi(year)));
+        ans.append(tobinary(stoi(date.substr(0,4))));
         ans+='-';
-        ans.append(tobinary(stoi(month)));
+        ans.append(tobinary(stoi(date.substr(5,2))));
         ans+='-';
-        ans.append(tobinary(stoi(dat)));
+        ans.append(tobinary(stoi(date.substr(8,2))));
         return ans;
     }
 };
