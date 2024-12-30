@@ -1,13 +1,14 @@
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
-        int n=nums.size(),j=0;
+        int n=nums.size();
         vector<int>result;
-        sort(nums.begin(),nums.end());
-        set<int>st;
-        for(auto it:nums) st.insert(it);
+        vector<int>hash(n+1,0);
+        for(auto it:nums){
+            hash[it]++;
+        }
         for(int i=1;i<=n;i++){
-            if(st.find(i)==st.end()){
+            if(hash[i]==0){
                 result.push_back(i);
             }
         }
