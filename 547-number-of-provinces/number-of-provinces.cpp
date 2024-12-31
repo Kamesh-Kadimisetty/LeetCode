@@ -2,10 +2,9 @@ class Solution {
 public:
     void dfs(int node,vector<vector<int>>&adj,vector<int>&visited){
         visited[node]=1;
-        int n=adj.size();
-        for(int i=0;i<n;i++){
-            if(!visited[i] && adj[node][i]==1){
-                dfs(i,adj,visited);
+        for(auto it:adj[node]){
+            if(!visited[it]){
+                dfs(it,adj,visited);
             }
         }
     }
@@ -13,10 +12,18 @@ public:
         int cnt=0;
         int n=isConnected.size();
         vector<int>visited(n,0);
+        vector<vector<int>>adj(n);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(isConnected[i][j]==1){
+                    adj[i].push_back(j);
+                }
+            }
+        }
         for(int i=0;i<n;i++){
             if(!visited[i]){
                 cnt++;
-                dfs(i,isConnected,visited);
+                dfs(i,adj,visited);
             }
         }
         return cnt;
