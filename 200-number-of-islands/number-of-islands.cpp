@@ -1,28 +1,41 @@
 class Solution {
 public:
-    int numIslands(vector<vector<char>>& grid) {
-        int m = grid.size(), n = m ? grid[0].size() : 0, islands = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    islands++;
-                    eraseIslands(grid, i, j);
+    void bfs(int row,int col,vector<vector<char>>& grid,vector<vector<int>>&visited){
+        int n=grid.size();
+        int m=grid[0].size();
+        queue<pair<int,int>>q;
+        visited[row][col]=1;
+        q.push({row,col});
+        vector<pair<int,int>>directons={{1,0},{-1,0},{0,1},{0,-1}};
+        while(!q.empty()){
+            int r=q.front().first;
+            int c=q.front().second;
+            q.pop();
+            for (auto [dr,dc]:directons) {
+                int delr = r + dr;      
+                int delc = c + dc;
+                if (delr >= 0 && delr < n && delc >= 0 && delc < m &&
+                    grid[delr][delc] == '1' && !visited[delr][delc]) {
+                    visited[delr][delc] = 1; 
+                    q.push({delr, delc});    
                 }
             }
         }
-        return islands;
     }
-private:
-    void eraseIslands(vector<vector<char>>& grid, int i, int j) {
-        int m = grid.size(), n = grid[0].size();
-        if (i < 0 || i == m || j < 0 || j == n || grid[i][j] == '0') {
-            return;
+    int numIslands(vector<vector<char>>& grid) {
+        if (grid.empty() || grid[0].empty()) return 0; 
+        int n=grid.size();
+        int m=grid[0].size();
+        int total=0;
+        vector<vector<int>>visited(n,vector<int>(m,0));
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(!visited[i][j] && grid[i][j]=='1'){
+                    total++;
+                    bfs(i,j,grid,visited);
+                }
+            }
         }
-        grid[i][j] = '0';
-        eraseIslands(grid, i - 1, j);
-        eraseIslands(grid, i + 1, j);
-        eraseIslands(grid, i, j - 1);
-        eraseIslands(grid, i, j + 1);
+        return total;
     }
 };
-	
