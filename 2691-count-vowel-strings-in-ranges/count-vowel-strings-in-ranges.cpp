@@ -7,14 +7,12 @@ public:
         int n=words.size();
         vector<int>prefixsum(n);
         prefixsum[0]=isvowel(words[0].front())&&isvowel(words[0].back());
-        cout<<prefixsum[0]<<endl;
         for(int i=1;i<n;i++){
             int add=0;
             if(isvowel(words[i].front())&& isvowel(words[i].back())){
                 add=1;
             }
             prefixsum[i]=prefixsum[i-1]+add;
-            cout<<prefixsum[i]<<endl;
         }
         vector<int>ans;
         for(auto it:queries){
