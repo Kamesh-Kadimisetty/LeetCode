@@ -19,9 +19,7 @@ public:
             int col=q.front().first.second;
             int dist=q.front().second;
             q.pop();
-            for (const auto& direction : directions) {
-                int dr = direction.first;
-                int dc = direction.second;
+            for(auto [dr,dc]:directions){
                 int nr=row+dr;
                 int nc=col+dc;
                 if(nr>=0 && nr<n && nc>=0 && nc<m && res[nr][nc]==-1){
