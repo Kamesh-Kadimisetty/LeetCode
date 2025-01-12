@@ -22,7 +22,6 @@ public:
             star.pop();
             open.pop();
         }
-        // if(star.size()%2==1)return false;
         return open.empty();
     }
 };
