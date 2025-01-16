@@ -1,8 +1,7 @@
 class Solution {
 public:
     int xorAllNums(vector<int>& nums1, vector<int>& nums2) {
-        int xor1 = 0;
-        int xor2 = 0;
+        int xor1 = 0,xor2 = 0;
         int len1 = nums1.size();
         int len2 = nums2.size();
         if (len2 % 2 != 0) {
