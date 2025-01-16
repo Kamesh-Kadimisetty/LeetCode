@@ -6,7 +6,7 @@ public:
             if(m%2==0){
                 return m;
             }
-            m+=m;
+            m+=n;
         }
         return 0;
     }
