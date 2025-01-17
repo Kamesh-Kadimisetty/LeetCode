@@ -2,7 +2,7 @@ class ParkingSystem {
 public:
     int x,y,z;
     ParkingSystem(int big, int medium, int small) {
-         x=big;
+        x=big;
         y=medium;
         z=small;
     }
