@@ -11,12 +11,11 @@ public:
                 if(i<n-1 && s[i+1]==')'){
                     if(!st.empty()){
                         st.pop();
-                        i++;
                     }
                     else{
                         result+=1;
-                        i++;
                     }
+                    i++;
                 }  
                 else{
                     if(!st.empty()){
@@ -29,7 +28,6 @@ public:
                 }
             }
             i++;
-            cout<<result<<endl;
         }
         return result+(2*st.size());
     }
