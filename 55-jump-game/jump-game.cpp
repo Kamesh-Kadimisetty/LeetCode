@@ -4,13 +4,9 @@ public:
         int n=nums.size();
         int reach=0;
         for(int i=0;i<n;i++){
-            if(i<=reach){
-                reach=max(reach,i+nums[i]);
-            }
-            else{
-                break;
-            }
+            if(i>reach)return false;
+            reach=max(reach,i+nums[i]);
         }
-        return reach>=n-1;
+        return true;
     }
 };
