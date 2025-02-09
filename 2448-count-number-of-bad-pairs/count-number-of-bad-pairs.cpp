@@ -1,7 +1,6 @@
 class Solution {
 public:
     long long countBadPairs(vector<int>& nums) {
-        long long count=0;
         long long n=nums.size();
         long long total=(n*(n-1))/2;
         long long good=0;
