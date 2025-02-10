@@ -1,36 +1,38 @@
 class Solution {
 public:
-    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
-        int n=graph.size();
-        vector<int>outdegree(n,0);
-        vector<vector<int>>adj(n);
-        for(int i=0;i<n;i++){
-            for(auto it:graph[i]){
-                adj[it].push_back(i);
-                outdegree[i]++;
-            }
-        }
-        queue<int>qu;
-        vector<int>nodes(n,0);
-        for(int i=0;i<n;i++){
-            if(outdegree[i]==0){
-                qu.push(i);
-            }
-        }
-        while(!qu.empty()){
-            int node=qu.front();
-            qu.pop();
-            nodes[node]=1;
-            for(auto it:adj[node]){
-                outdegree[it]--;
-                if(outdegree[it]==0){
-                    qu.push(it);
+    bool dfs(int node,vector<vector<int>>&adj,vector<int>&visited,vector<int>&pathvisited,vector<int>&safenodes){
+        visited[node]=1;
+        pathvisited[node]=1;
+        safenodes[node]=0;
+        for(auto it:adj[node]){
+            if(!visited[it]){
+                if(dfs(it,adj,visited,pathvisited,safenodes)==true){
+                    safenodes[node]=0;
+                    return true;
                 }
+            }
+            else if(visited[it] && pathvisited[it]){
+                safenodes[node]=0;
+                return true;
+            }
+        }
+        safenodes[node]=1;
+        pathvisited[node]=0;
+        return false;
+    }
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int V=graph.size();
+        vector<int>visited(V,0);
+        vector<int>pathvisited(V,0);
+        vector<int>safenodes(V,0);
+        for(int i=0;i<V;i++){
+            if(!visited[i]){
+                dfs(i,graph,visited,pathvisited,safenodes);
             }
         }
         vector<int>result;
-        for(int i=0;i<n;i++){
-            if(nodes[i]==1){
+        for(int i=0;i<V;i++){
+            if(safenodes[i]==1){
                 result.push_back(i);
             }
         }
