@@ -2,21 +2,15 @@ class Solution {
 public:
     string clearDigits(string s) {
         int n=s.size();
-        stack<char>st;
+        string result;
         for(auto ch:s){
             if(!(ch>='0' && ch<='9')){
-                st.push(ch);
+                result+=ch;
             }
             else{
-                st.pop();
+                result.pop_back();
             }
         }
-        string result;
-        while(!st.empty()){
-            result+=st.top();
-            st.pop();
-        }
-        reverse(result.begin(),result.end());
         return result;
     }
 };
