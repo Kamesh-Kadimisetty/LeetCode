@@ -18,9 +18,9 @@ public:
             int col=cell.second.second;
             for(int i=-1;i<=1;i++){
                 for(int j=-1;j<=1;j++){
-                    // if(i==0 && j==0){
-                    //     continue;
-                    // }
+                    if(i==0 && j==0){
+                        continue;
+                    }
                     int nr=row+i;
                     int nc=col+j;
                     if(nr>=0 && nr<n && nc>=0 && nc<n && grid[nr][nc]==0 && distance[nr][nc]>wt+1){
