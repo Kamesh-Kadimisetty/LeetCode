@@ -21,9 +21,6 @@ public:
         vector<int>values;
         inorder(root,values);
         int totalsum=accumulate(values.begin(),values.end(),0);
-        for(auto it:values){
-            cout<<it<<" ";
-        }
         changevalues(root,values,totalsum);
         return root;
     }
