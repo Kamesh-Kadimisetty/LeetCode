@@ -4,14 +4,10 @@ public:
         if(startValue>target){
             return startValue-target;
         }
-        // if(startValue>target/2){
-        //     return startValue*2-target+1;
-        // }
         long long cnt=0;
         while(target!=startValue){
             if(target<startValue){
                 cnt+=(startValue-target);
-                target+=(startValue-target);
                 break;
             }
             else{
@@ -22,7 +18,6 @@ public:
                 target/=2;
                 cnt++;
             }
-            cout<<target<<" "<<cnt<<endl;
         }
         return cnt;
     }
