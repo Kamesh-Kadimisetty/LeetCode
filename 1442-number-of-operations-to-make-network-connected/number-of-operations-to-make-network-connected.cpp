@@ -1,7 +1,7 @@
 class Solution {
 public:
     //USING DISJOINT SETS
-    vector<int> parent, size;
+    vector<int> parent,size;
     int findUPar(int node) {
         if (node == parent[node])
             return node;
@@ -22,7 +22,6 @@ public:
     }
     int makeConnected(int n, vector<vector<int>>& connections) {
         if(connections.size()<n-1)return -1;
-        cout<<connections.size();
         parent.resize(n + 1);
         size.resize(n + 1);
         for (int i = 0; i <= n; i++) {
