@@ -16,7 +16,6 @@ public:
             }
         }
         int ind=(low+high)/2;
-        cout<<ind<<endl;
         int pos=-1,neg=-1,i=ind;
         while(i>=0 && nums[i]>=0){
             i--;
@@ -26,7 +25,6 @@ public:
         }
         neg=i+1;
         pos=n-ind;
-        cout<<neg<<" "<<pos;
         return max(pos,neg);
     }
 };
