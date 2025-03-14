@@ -1,60 +1,79 @@
+class Disjointset{
+public:
+    vector<int>parent,size;
+    Disjointset(int n){
+        parent.resize(n+1);
+        size.resize(n+1,1);
+        for(int i=0;i<n;i++) parent[i]=i;
+    }
+    int findparent(int node){
+        if(node==parent[node]){
+            return node;
+        }
+        return parent[node]=findparent(parent[node]);
+    }
+    void unionbysize(int u,int v){
+        int ulpu=findparent(u);
+        int ulpv=findparent(v);
+        if(ulpv==ulpu){
+            return;
+        }
+        if(size[ulpu]>size[ulpv]){
+            parent[ulpv]=ulpu;
+            size[ulpu]+=size[ulpv];
+        }
+        else{
+            parent[ulpu]=ulpv;
+            size[ulpv]+=size[ulpu];
+        }
+    }
+};
 class Solution {
 public:
     int largestIsland(vector<vector<int>>& grid) {
-        if (grid.empty())
-            return 0;
-        int n = grid.size();
-        vector<vector<int>> labels(n,vector<int>(n, 0));
-        unordered_map<int, int> islandSizes;
-        int label = 1;
-        int maxSize = 0;
-        int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (grid[i][j] == 1 && labels[i][j] == 0) {
-                    int size = 0;
-                    vector<pair<int, int>> stack;
-                    stack.push_back({i, j});
-                    labels[i][j] = label;
-                    while (!stack.empty()) {
-                        auto [x, y] = stack.back();
-                        stack.pop_back();
-                        size++;
-                        for (auto [dx, dy] : dirs) {
-                            int nx = x + dx, ny = y + dy;
-                            if (nx >= 0 && nx < n && ny >= 0 && ny < n &&
-                                grid[nx][ny] == 1 && labels[nx][ny] == 0) {
-                                labels[nx][ny] = label;
-                                stack.push_back({nx, ny});
+        int n=grid.size();
+        Disjointset ds(n*n);
+        vector<pair<int,int>>directions={{0,1},{0,-1},{1,0},{-1,0}};
+        //connecting 1's
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1){
+                    for(auto [dr,dc]:directions){
+                        int nr=i+dr;
+                        int nc=j+dc;
+                        if(nr>=0 && nr<n && nc>=0 && nc<n && grid[nr][nc]==1){
+                            int node=i*n+j;
+                            int adjnode=nr*n+nc;
+                            if(ds.findparent(node)!=ds.findparent(adjnode)){
+                                ds.unionbysize(node,adjnode);
                             }
                         }
                     }
-                    islandSizes[label] = size;
-                    maxSize = max(maxSize, size);
-                    label++;
                 }
             }
         }
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (grid[i][j] == 0) {
-                    unordered_set<int> neighborLabels;
-                    int total = 1;
-
-                    for (auto [dx, dy] : dirs) {
-                        int nx = i + dx, ny = j + dy;
-                        if (nx >= 0 && nx < n && ny >= 0 && ny < n &&
-                            grid[nx][ny] == 1) {
-                            neighborLabels.insert(labels[nx][ny]);
+        int maxsize=0;
+        //Now find 0 and connect to neighbours to get maxsize;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==0){
+                    int cnt=1;
+                    set<int>st;
+                    for(auto [dr,dc]:directions){
+                        int nr=i+dr;
+                        int nc=j+dc;
+                        if(nr>=0 && nr<n && nc>=0 && nc<n && grid[nr][nc]==1){
+                            int adjnode=nr*n+nc;
+                            st.insert(ds.findparent(adjnode));
                         }
                     }
-                    for (int lbl : neighborLabels) {
-                        total += islandSizes[lbl];
+                    for(auto it:st){
+                        cnt+=ds.size[it];
                     }
-                    maxSize = max(maxSize, total);
+                    maxsize=max(maxsize,cnt);
                 }
             }
         }
-        return maxSize;
+        return maxsize==0?n*n:maxsize;
     }
 };
