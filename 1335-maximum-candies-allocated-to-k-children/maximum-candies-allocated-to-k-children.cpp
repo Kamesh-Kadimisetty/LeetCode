@@ -13,7 +13,6 @@ public:
         if(total<k)return 0;
         int low=1,high=*max_element(candies.begin(),candies.end());
         while(low<=high){
-            cout<<low<<" "<<high<<endl;
             long long mid=(low+high)/2;
             if(ispossible(candies,k,mid)){
                 low=mid+1;
