@@ -1,34 +1,24 @@
 class Solution {
 public:
-    int factorial(int n){
-        if(n==0 || n==1){
-            return 1;
-        }
-        return n*factorial(n-1);
-    }
-    void func(vector<int>&nums,int k,string& ans){
-        int n=nums.size();
-        if(n==0){
-            return;
-        }
-        int total=factorial(n);
-        int oneset=total/n;
-        int index=k/oneset;
-        int firstnum=nums[index];
-        cout<<firstnum;
-        ans+=to_string(firstnum);
-        nums.erase(nums.begin()+index);
-        k=(k==0?0:k%oneset);
-        func(nums,k,ans);
-    }
     string getPermutation(int n, int k) {
+        int fact=1;
         vector<int>nums;
-        for(int i=1;i<=n;i++){
+        for(int i=1;i<n;i++){
+            fact*=i;
             nums.push_back(i);
         }
+        nums.push_back(n);
         k--;
-        string ans="";
-        func(nums,k,ans);
+        string ans;
+        while(true){
+            ans+=to_string(nums[k/fact]);
+            nums.erase(nums.begin()+k/fact);
+            if(nums.size()==0){
+                break;
+            }
+            k=k%fact;
+            fact/=nums.size();
+        }
         return ans;
     }
 };
