@@ -13,10 +13,7 @@ public:
                 ingtorecp[it].push_back(recp);
             }
         }
-        queue<string>qu;
-        for(auto it:supplies){
-            qu.push(it);
-        }
+        queue<string>qu(supplies.begin(),supplies.end());
         vector<string>result;
         while(!qu.empty()){
             string curr=qu.front();
