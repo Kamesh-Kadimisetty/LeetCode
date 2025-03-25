@@ -2,7 +2,7 @@ class Solution {
 public:
     int merge(vector<pair<int,int>>& intervals){
         sort(intervals.begin(),intervals.end());
-        vector<vector<int>>result;
+        int cnt=1;
         int start=intervals[0].first,end=intervals[0].second;
         for(int i=1;i<intervals.size();i++){
             int x=intervals[i].first,y=intervals[i].second;
@@ -10,13 +10,12 @@ public:
                 end=max(end,y);
             }
             else{
-                result.push_back({start,end});
+                cnt++;
                 start=x;
                 end=y;
             }
         }
-        result.push_back({start,end});
-        return result.size();
+        return cnt;
     }
     bool checkValidCuts(int n, vector<vector<int>>& rectangles) {
         vector<pair<int,int>> xaxis;
@@ -25,10 +24,7 @@ public:
             xaxis.push_back({it[0],it[2]});
             yaxis.push_back({it[1],it[3]});
         }
-        sort(xaxis.begin(),xaxis.end());
-        sort(yaxis.begin(),yaxis.end());
-        int ans=merge(xaxis);
-        ans=max(ans,merge(yaxis));
+        int ans=max(merge(xaxis),merge(yaxis));
         return ans>=3;
     }
 };
