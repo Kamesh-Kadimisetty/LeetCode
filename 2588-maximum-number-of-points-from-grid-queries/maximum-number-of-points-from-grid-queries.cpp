@@ -21,7 +21,6 @@ public:
             int query=it.first;
             int index=it.second;
             while(!pq.empty() && pq.top().first<query){
-                int val=pq.top().first;
                 int row=pq.top().second.first;
                 int col=pq.top().second.second;
                 pq.pop();
