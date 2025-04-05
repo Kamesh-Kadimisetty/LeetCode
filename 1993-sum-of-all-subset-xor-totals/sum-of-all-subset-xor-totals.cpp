@@ -10,8 +10,6 @@ public:
         func(ind+1,currxor,nums,total);
     }
     int subsetXORSum(vector<int>& nums) {
-        int n=nums.size();
-        if(n==0)return 0;
         int total=0;
         func(0,0,nums,total);
         return total;
