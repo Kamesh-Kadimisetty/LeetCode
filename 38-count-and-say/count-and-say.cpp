@@ -1,8 +1,8 @@
 class Solution {
 public:
    string countAndSay(int n) {
-    if (n == 1){return "1";}
-    if (n == 2){return "11";}
+    if (n == 1) return "1";
+    if (n == 2) return "11";
     string result = countAndSay(n-1);
     string newresult = "";
     int count = 1;
