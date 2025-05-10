@@ -15,12 +15,10 @@ public:
             return sum1+((cnt1<cnt2)?cnt2:cnt1);
         }
         if(sum1>sum2){
-            long long diff=sum1-sum2;
-            if(cnt2==0 || (cnt1==0 && diff<cnt2)) return -1;
+            if(cnt2==0 || (cnt1==0 && sum1-sum2<cnt2)) return -1;
         }
         else{
-            long long diff=sum2-sum1;
-            if(cnt1==0 || (cnt2==0 && diff<cnt1)) return -1;
+            if(cnt1==0 || (cnt2==0 && sum2-sum1<cnt1)) return -1;
         }
         return max(sum2+cnt2,sum1+cnt1);
     }
