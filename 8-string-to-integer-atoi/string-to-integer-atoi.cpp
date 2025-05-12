@@ -14,11 +14,7 @@ public:
         vector<int>arr;
         while(s[i]>='0' && s[i]<='9' && i<n){
             arr.push_back(s[i]-'0');
-            // cout<<s[i]-'0'<<" ";
             i++;
-        }
-        for(auto it:arr){
-            cout<<it<<" ";
         }
         if(arr.size()>11) return flag==1?-2147483648:2147483647;
         long long num=0,mul=1;
