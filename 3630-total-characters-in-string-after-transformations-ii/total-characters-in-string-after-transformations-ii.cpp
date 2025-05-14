@@ -1,5 +1,4 @@
 using ll = long long;
-
 class Solution {
 public:
     const int mod = 1e9 + 7;
