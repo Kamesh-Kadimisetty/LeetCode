@@ -14,7 +14,6 @@ public:
                 i++;
             }
             if(j-i+1==k && mpp.size()>=m){
-                cout<<i<<" "<<j<<" "<<sum<<endl;
                 result=max(result,sum);
             }
             j++;
