@@ -8,17 +8,15 @@ public:
         } 
         if(i>=n || j>=m) return -1e9;
         if(dp[i][j][chances]!=INT_MIN) return dp[i][j][chances];
-        if(coins[i][j]>=0){
-            return dp[i][j][chances]=max(coins[i][j]+func(i+1,j,coins,chances,dp),
-                        coins[i][j]+func(i,j+1,coins,chances,dp));
+        int take=INT_MIN,nottake=INT_MIN;
+        take=max(coins[i][j]+func(i+1,j,coins,chances,dp),
+                coins[i][j]+func(i,j+1,coins,chances,dp));
+
+        if(chances>0 && coins[i][j]<0){
+            nottake=max(func(i+1,j,coins,chances-1,dp),
+                        func(i,j+1,coins,chances-1,dp));
         }
-        if(chances>0){
-            return dp[i][j][chances]=max({func(i+1,j,coins,chances-1,dp),
-                        func(i,j+1,coins,chances-1,dp),
-                        coins[i][j]+func(i+1,j,coins,chances,dp),
-                        coins[i][j]+func(i,j+1,coins,chances,dp)});
-        }
-        return dp[i][j][chances]=max(coins[i][j]+func(i+1,j,coins,chances,dp),coins[i][j]+func(i,j+1,coins,chances,dp));
+        return dp[i][j][chances]=max(take,nottake);
     }
     int maximumAmount(vector<vector<int>>& coins) {
         int n=coins.size(),m=coins[0].size();
