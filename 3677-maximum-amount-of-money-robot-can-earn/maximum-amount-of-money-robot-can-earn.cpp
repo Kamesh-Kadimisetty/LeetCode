@@ -8,6 +8,7 @@ public:
         } 
         if(i>=n || j>=m) return -1e9;
         if(dp[i][j][chances]!=INT_MIN) return dp[i][j][chances];
+        
         int take=INT_MIN,nottake=INT_MIN;
         take=max(coins[i][j]+func(i+1,j,coins,chances,dp),
                 coins[i][j]+func(i,j+1,coins,chances,dp));
