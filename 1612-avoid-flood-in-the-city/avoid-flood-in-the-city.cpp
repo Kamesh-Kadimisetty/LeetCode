@@ -3,7 +3,7 @@ public:
     vector<int> avoidFlood(vector<int>& rains) {
         int n=rains.size();
         vector<int>result(n,1);
-        vector<int>arr;
+        deque<int>arr;
         unordered_map<int,int>visited;
         for(int i=0;i<n;i++){
             if(rains[i]>0){
