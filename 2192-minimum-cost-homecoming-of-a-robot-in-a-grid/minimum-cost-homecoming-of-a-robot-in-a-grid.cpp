@@ -5,21 +5,13 @@ public:
         int x=startPos[0],y=startPos[1];
         int p=homePos[0],q=homePos[1];
         while(x!=p){
-            if(x<p){
-                x++;
-            }
-            else{
-                x--;
-            }
+            if(x<p) x++;
+            else  x--;
             cost+=rowCosts[x];
         }
         while(y!=q){
-            if(y<q){
-                y++;
-            }
-            else{
-                y--;
-            }
+            if(y<q) y++;
+            else y--;
             cost+=colCosts[y];
         }
         return cost;
