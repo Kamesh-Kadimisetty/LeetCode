@@ -7,7 +7,6 @@ public:
             mpp[it]++;
         }
         for(auto it:mpp){
-            cout<<it.first<<" "<<it.second<<endl;
             string s=it.first;
             reverse(s.begin(),s.end());
             if(mpp.find(s)!=mpp.end()){
