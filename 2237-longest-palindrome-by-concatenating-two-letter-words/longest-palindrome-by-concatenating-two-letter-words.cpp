@@ -32,7 +32,6 @@ public:
                 }
             }
         }
-        cout<<cnt;
         return (cnt+flag)*2;
     }
 };
