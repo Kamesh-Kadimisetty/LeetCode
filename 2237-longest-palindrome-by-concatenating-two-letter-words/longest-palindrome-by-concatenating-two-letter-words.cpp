@@ -11,9 +11,7 @@ public:
             reverse(s.begin(),s.end());
             if(mpp.find(s)!=mpp.end()){
                 if(s[0]==s[1] && mpp[s]==1){
-                    if(flag==0){
-                        flag=1;
-                    }
+                    if(flag==0) flag=1;
                 }
                 else{
                     if(s[0]==s[1]){
