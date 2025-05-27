@@ -15,8 +15,15 @@ public:
         return dp[ind][canplace]=(put+notput)%MOD;
     }
     int countHousePlacements(int n) {
-        vector<vector<int>>dp(n,vector<int>(2,-1));
-        long long x= func(0,1,n,dp);
+        if(n==1) return 4;
+        if(n==2) return 9;
+        vector<int>dp(n+1,0);
+        dp[1]=2;
+        dp[2]=3;
+        for(int i=3;i<=n;i++){
+            dp[i]=(dp[i-1]+dp[i-2])%MOD;
+        }
+        long long x=dp[n];
         return (x*x)%MOD;
     }
 };
