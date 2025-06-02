@@ -2,12 +2,10 @@ class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
         int n=nums.size();
-        for(int i=0;i<n;i++){
-            if(nums[i]==0) nums[i]=-1;
-        }
         vector<int>prefix(n);
-        prefix[0]=nums[0];
+        prefix[0]=nums[0]==0?-1:1;
         for(int i=1;i<n;i++){
+            if(nums[i]==0) nums[i]=-1;
             prefix[i]=prefix[i-1]+nums[i];
         }
         unordered_map<int,int>mpp;
@@ -23,7 +21,6 @@ public:
                 mpp[prefix[i]]=i;
             }
         }
-        for(auto it:prefix) cout<<it<<" ";
         return maxlen;
     }
 };
