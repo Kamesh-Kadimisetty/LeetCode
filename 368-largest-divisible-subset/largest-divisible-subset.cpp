@@ -25,6 +25,7 @@ public:
             maxind=hash[maxind];
         }
         temp.push_back(nums[maxind]);
+        reverse(temp.begin(),temp.end());
         return temp;
     }
 };
