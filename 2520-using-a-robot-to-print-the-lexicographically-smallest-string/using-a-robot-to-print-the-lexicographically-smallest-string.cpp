@@ -8,7 +8,6 @@ public:
             minchar[i]=min(s[i],minchar[i+1]);
         }
         // for(auto it:minchar) cout<<it<<" ";
-        // cout<<endl;
         string result;
         stack<char>st;
         for(int i=0;i<n;i++){
