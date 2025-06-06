@@ -7,12 +7,10 @@ public:
         for(int i=n-2;i>=0;i--){
             minchar[i]=min(s[i],minchar[i+1]);
         }
-        // for(auto it:minchar) cout<<it<<" ";
         string result;
         stack<char>st;
         for(int i=0;i<n;i++){
             if(s[i]==minchar[i]){
-                // cout<<i<<" "<<result<<endl;;
                 result+=s[i];
                 while(!st.empty() && st.top()<=s[i+1] && st.top()<=minchar[i+1]){
                     result+=st.top();
