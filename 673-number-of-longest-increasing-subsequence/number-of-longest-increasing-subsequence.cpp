@@ -17,9 +17,6 @@ public:
         for(int i=0;i<n;i++){
             if(dp[i]==maxlen) maxcnt+=cnt[i];
         }
-        for(auto it:dp) cout<<it<<" ";
-        cout<<endl;
-        for(auto it:cnt) cout<<it<<" ";
         return maxcnt;
     }
 };
