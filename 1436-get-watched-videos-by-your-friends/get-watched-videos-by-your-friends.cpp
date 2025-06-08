@@ -2,12 +2,6 @@ class Solution {
 public:
     vector<string> watchedVideosByFriends(vector<vector<string>>& watchedVideos, vector<vector<int>>& friends, int id, int level) {
         int n=watchedVideos.size();
-        vector<vector<int>>adj(n);
-        for(int i=0;i<n;i++){
-            for(int j=0;j<friends[i].size();j++){
-                adj[i].push_back(friends[i][j]);
-            }
-        }
         vector<int>visited(n,0);
         queue<pair<int,int>>qu;
         qu.push({id,0});
@@ -20,7 +14,7 @@ public:
             if(lvl==level){
                 for(auto it:watchedVideos[node]) mpp[it]++;
             }
-            for(auto it:adj[node]){
+            for(auto it:friends[node]){
                 if(!visited[it] && lvl+1<=level){
                     qu.push({it,lvl+1});
                     visited[it]=1;
