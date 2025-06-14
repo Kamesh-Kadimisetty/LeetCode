@@ -1,28 +1,12 @@
 class Solution {
 public:
-    TreeNode* invertTree(TreeNode* root) {
-        if(root==nullptr) return root;
-        TreeNode* leftchild=root->left;
-        TreeNode* rightchild=root->right;
-        root->right=leftchild;
-        root->left=rightchild;
-        invertTree(leftchild);
-        invertTree(rightchild);
-        return root;
-    }
-    
-    bool isSameTree(TreeNode* p,TreeNode* q) {
-        if (p==nullptr && q==nullptr) {
-            return true;
-        }
-        if (p==nullptr || q==nullptr) {
-            return false;
-        }
-        return (p->val==q->val)&&isSameTree(p->left,q->left)&&isSameTree(p->right,q->right);
+    bool func(TreeNode* l,TreeNode* r){
+        if(l==NULL || r==NULL) return l==r;
+        if(l->val!=r->val) return false;
+        return func(l->left,r->right) && func(l->right,r->left);
     }
     bool isSymmetric(TreeNode* root) {
         if(root==NULL) return true;
-        TreeNode* x=invertTree(root->left);
-        return isSameTree(root->right,x);
+        return func(root->left,root->right);
     }
 };
