@@ -6,7 +6,6 @@ public:
         for(int i=0;i<maxnum.size();i++){
             if(maxnum[i]!='9'){
                 mapdig=maxnum[i];
-                maxnum[i]='9';
                 break;
             }
         }
