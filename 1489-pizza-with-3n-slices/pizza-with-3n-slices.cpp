@@ -1,14 +1,18 @@
 class Solution {
 public:
-    int func(int ind,int x,int n,vector<int>&slices,vector<vector<int>>&dp){
-        if(x==0 || ind>n) return 0;
-        if(dp[ind][x]!=-1) return dp[ind][x];
-        return dp[ind][x]=max(slices[ind]+func(ind+2,x-1,n,slices,dp),func(ind+1,x,n,slices,dp));
+    int func(int x,vector<int>slices){
+        int n=slices.size();
+        vector<vector<int>>dp(n+2,vector<int>(x+1,0));
+        for(int ind=n-1;ind>=0;ind--){
+            for(int j=1;j<=x;j++){
+                dp[ind][j]=max(slices[ind]+dp[ind+2][j-1],dp[ind+1][j]);
+            }   
+        }
+        return dp[0][x];
     }
     int maxSizeSlices(vector<int>& slices) {
         int n=slices.size(),x=n/3;
-        vector<vector<int>>dp1(n,vector<int>(x+1,-1));
-        vector<vector<int>>dp2(n,vector<int>(x+1,-1));
-        return max(func(0,x,n-2,slices,dp1),func(1,x,n-1,slices,dp2));
+        return max(func(x,vector<int>(slices.begin(),slices.end()-1)),
+                    func(x,vector<int>(slices.begin()+1,slices.end())));
     }
 };
