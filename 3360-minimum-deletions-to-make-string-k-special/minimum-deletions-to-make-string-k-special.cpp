@@ -12,11 +12,10 @@ public:
         int n=word.size(),i=0;
         vector<int>freq(26,0);
         for(auto it:word) freq[it-'a']++;
-        sort(freq.begin(),freq.end());
-        for(i=0;i<26;i++){
-            if(freq[i]!=0)break; 
+        vector<int>arr;
+        for(auto it:freq){
+            if(it!=0) arr.push_back(it);
         }
-        vector<int>arr(freq.begin()+i,freq.end());
         int mindeletions=INT_MAX;
         for(int i=0;i<arr.size();i++){
             int maxlimit=arr[i]+k;
