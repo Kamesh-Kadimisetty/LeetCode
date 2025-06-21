@@ -17,7 +17,6 @@ public:
             if(freq[i]!=0)break; 
         }
         vector<int>arr(freq.begin()+i,freq.end());
-        for(auto it:arr) cout<<it<<" ";
         int mindeletions=INT_MAX;
         for(int i=0;i<arr.size();i++){
             int maxlimit=arr[i]+k;
