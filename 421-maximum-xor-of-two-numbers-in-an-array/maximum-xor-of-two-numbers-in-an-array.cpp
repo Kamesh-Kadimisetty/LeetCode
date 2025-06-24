@@ -2,16 +2,16 @@ class Node{
     public:
     Node* links[2];
 
-    bool containskey(char ch){
-        return links[ch-'0']!=NULL;
+    bool containskey(int ch){
+        return links[ch]!=NULL;
     }
 
-    void put(char ch,Node* node){
-        links[ch-'0']=node;
+    void put(int ch,Node* node){
+        links[ch]=node;
     }
 
-    Node* get(char ch){
-        return links[ch-'0'];
+    Node* get(int ch){
+        return links[ch];
     }
 };
 class Trie {
@@ -21,27 +21,28 @@ public:
        root=new Node(); 
     }
     
-    void insert(string word) {
+    void insert(int num) {
         Node* curr=root;
-        for(int i=0;i<word.size();i++){
-            if(!curr->containskey(word[i])){
-                curr->put(word[i],new Node());
+        for(int i=31;i>=0;i--){
+            int bit=(num>>i)&1;
+            if(!curr->containskey(bit)){
+                curr->put(bit,new Node());
             }
-            curr=curr->get(word[i]);
+            curr=curr->get(bit);
         }
     }
 
-    int findmax(string binary){
+    int findmax(int num){
         Node* curr=root;
         int ans=0;
-        for(int i=0;i<binary.size();i++){
-            int x=binary[i]=='1'?'0':'1';
-            if(curr->containskey(x)){
-                ans+=pow(2,31-i);
-                curr=curr->get(x);
-            }
+        for(int i=31;i>=0;i--){
+            int bit=(num>>i)&1;
+            if(curr->containskey(1-bit)){
+                ans=ans | (1<<i);
+                curr=curr->get(1-bit);
+            }         
             else{
-                curr=curr->get(binary[i]);
+                curr=curr->get(bit);
             }
         }
         return ans;
@@ -49,27 +50,15 @@ public:
 };
 class Solution {
 public:
-    string to_binary(int num){
-        string ans;
-        while(num>0){
-            ans+=num%2==1?'1':'0';
-            num/=2;
-        }
-        while(ans.size()<32) ans+='0';
-        reverse(ans.begin(),ans.end());
-        return ans;
-    }
     int findMaximumXOR(vector<int>& nums) {
         int n=nums.size();
         Trie trie;
         for(int i=0;i<n;i++){
-            string binary=to_binary(nums[i]);
-            trie.insert(binary);
+            trie.insert(nums[i]);
         }
         int maxresult=0;
         for(int i=0;i<n;i++){
-            string binary=to_binary(nums[i]);
-            maxresult=max(maxresult,trie.findmax(binary));
+            maxresult=max(maxresult,trie.findmax(nums[i]));
         }
         return maxresult;
     }
