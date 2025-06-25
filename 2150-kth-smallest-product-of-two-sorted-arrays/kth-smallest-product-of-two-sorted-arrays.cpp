@@ -19,7 +19,7 @@ public:
         while(low<=high){
             long long mid=(low+high)/2;
             long long cnt=0;
-            //find numbers of pairs with product less than mid
+            //find numbers of pairs with product less than and equal to mid
             for(int i=0;i<n;i++){
                 cnt+=func(nums2,nums1[i],mid);
             }
