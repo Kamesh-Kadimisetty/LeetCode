@@ -1,17 +1,12 @@
 class Solution {
 public:
-    int height(TreeNode* root,int &diameter){
-        if(root==nullptr){
-            return 0;
-        }
-        int lf=height(root->left,diameter);
-        int rt=height(root->right,diameter);
-        diameter=max(diameter,lf+rt);
-        return 1+max(lf,rt);
+    int maxDepth(TreeNode* root) {
+        if(root==NULL) return 0;
+        return 1+max(maxDepth(root->left),maxDepth(root->right));
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        int diameter=0;
-        height(root,diameter);
-        return diameter;
+        if(root==NULL) return 0;
+        int depth=maxDepth(root->left)+maxDepth(root->right);
+        return max({depth,diameterOfBinaryTree(root->left),diameterOfBinaryTree(root->right)});
     }
 };
