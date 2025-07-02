@@ -31,9 +31,9 @@ public:
             dp=curr;
         }
         long long invalid=0;
-        for (int s=temp.size();s<k;s++)
+        for (int s=temp.size();s<k;s++){
             invalid=(invalid+dp[s])%MOD;
-
+        }
         return (prod-invalid+MOD)%MOD;
     }
 };
