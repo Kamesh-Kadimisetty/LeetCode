@@ -1,20 +1,14 @@
 class Solution {
 public:
+    void func(TreeNode* root,int level,vector<int>& result){
+        if(root==NULL) return;
+        if(result.size()==level) result.push_back(root->val);
+        func(root->right,level+1,result);
+        func(root->left,level+1,result);
+    }
     vector<int> rightSideView(TreeNode* root) {
-        if(root==NULL) return {};
-        queue<TreeNode*>qu;
         vector<int>result;
-        qu.push(root);
-        while(!qu.empty()){
-            int n=qu.size();
-            for(int i=0;i<n;i++){
-                TreeNode* curr=qu.front();
-                qu.pop();
-                if(i==n-1) result.push_back(curr->val);
-                if(curr->left) qu.push(curr->left);
-                if(curr->right) qu.push(curr->right);
-            }
-        }
+        func(root,0,result);
         return result;
     }
 };
