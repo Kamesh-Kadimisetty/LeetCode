@@ -14,7 +14,6 @@ public:
             time=endtime[i];
         }
         if(time<eventime) freetimes.push_back(eventime-time);
-        for(auto it:freetimes) cout<<it<<" ";
         int result=0,sum=0;
         for(int i=0;i<freetimes.size();i++){
             sum+=freetimes[i];
