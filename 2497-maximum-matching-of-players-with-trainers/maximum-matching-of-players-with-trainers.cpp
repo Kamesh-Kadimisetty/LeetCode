@@ -1,13 +1,13 @@
 class Solution {
 public:
     int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
+        int n=players.size(),m=trainers.size();
         sort(players.begin(),players.end());
         sort(trainers.begin(),trainers.end());
-        int total=0,i=0,j=0;
-        int n=players.size(),m=trainers.size();
+        int i=0,j=0,cnt=0;
         while(i<n && j<m){
             if(players[i]<=trainers[j]){
-                total++;
+                cnt++;
                 i++;
                 j++;
             }
@@ -15,6 +15,6 @@ public:
                 j++;
             }
         }
-        return total;
+        return cnt;
     }
 };
