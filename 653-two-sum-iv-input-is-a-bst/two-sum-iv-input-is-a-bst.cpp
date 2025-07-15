@@ -1,17 +1,47 @@
+class BSTIterator {
+public:
+    stack<TreeNode*>st;
+    //reverse->true->before
+    //reverse->false->next
+    bool reverse=true;
+    BSTIterator(TreeNode* root,bool isreverse) {
+        reverse=isreverse;
+        pushall(root);
+    }
+    
+    int next() {
+        TreeNode* curr=st.top();
+        st.pop();
+        int ans=curr->val; //store ans
+        if(!reverse) pushall(curr->right);
+        else pushall(curr->left);
+        return ans;
+    }
+    
+    bool hasNext() {
+        return !st.empty();
+    }
+
+    void pushall(TreeNode* node){
+        while(node!=NULL){
+            st.push(node);
+            if(reverse)node=node->right;
+            else node=node->left;
+        }
+    }
+};
 class Solution {
 public:
-    bool inorder(TreeNode* root,int k,unordered_map<int,int>& mpp){
-        if(root!=NULL){
-            if(inorder(root->left,k,mpp)==true) return true;
-            int x=root->val;
-            if(mpp.find(k-x)!=mpp.end()) return true;
-            mpp[x]++;
-            if(inorder(root->right,k,mpp)==true) return true;
+    bool findTarget(TreeNode* root, int k) {
+        BSTIterator l(root,false);
+        BSTIterator r(root,true);
+        int i=l.next();
+        int j=r.next(); //before
+        while(i<j){
+            if(i+j==k) return true;
+            if(i+j<k) i=l.next();
+            else j=r.next();  //before
         }
         return false;
-    }
-    bool findTarget(TreeNode* root, int k) {
-        unordered_map<int,int>mpp;
-        return inorder(root,k,mpp);
     }
 };
