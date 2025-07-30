@@ -35,7 +35,7 @@ public:
                 qu.push(ind-1);
                 distance[ind-1]=distance[ind]+1;
             }
-            if(primes[nums[ind]]==false || st.find(nums[ind]) != st.end()
+            if(primes[nums[ind]]==false || st.find(nums[ind])!=st.end()
 ) continue;
             for(int x=nums[ind];x<=maxi;x+=nums[ind]){
                 if(mpp.find(x)==mpp.end()) continue;
